@@ -4,10 +4,15 @@ import java.util.ArrayList;
 
 public class CS2420Student extends UofUStudent{
 	EmailAddress contactInfo;
-	ArrayList<Double> assignments, exams, labs, quizzes, polling;
+	ArrayList<Double> assignments, exams, labs, quizzes, polling ;
 	
 	public CS2420Student(String firstName, String lastName, int uNID, EmailAddress contactInfo) {
 		super(firstName,lastName,uNID);
+		assignments = new ArrayList<Double>();
+		exams = new ArrayList<Double>();
+		labs = new ArrayList<Double>();
+		quizzes = new ArrayList<Double>();
+		polling = new ArrayList<Double>();
 	}
 	
 	public EmailAddress getContactInfo(){
