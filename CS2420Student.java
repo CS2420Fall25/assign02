@@ -7,12 +7,13 @@ public class CS2420Student extends UofUStudent{
 	ArrayList<Double> assignments, exams, labs, quizzes, polling ;
 	
 	public CS2420Student(String firstName, String lastName, int uNID, EmailAddress contactInfo) {
-		super(firstName,lastName,uNID);
+		super(firstName, lastName, uNID);
 		assignments = new ArrayList<Double>();
 		exams = new ArrayList<Double>();
 		labs = new ArrayList<Double>();
 		quizzes = new ArrayList<Double>();
 		polling = new ArrayList<Double>();
+		this.contactInfo = contactInfo;
 	}
 	
 	public EmailAddress getContactInfo(){
