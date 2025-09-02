@@ -114,9 +114,9 @@ public class CS2420Class {
 	 */
 	public ArrayList<EmailAddress> getContactList() {
 		ArrayList<EmailAddress> results = new ArrayList<EmailAddress>();
-		for (CS2420Student student : studentList) {
-			results.add(student.getContactInfo());
-		}
+		for (CS2420Student student : studentList)
+			if (!results.contains(student.getContactInfo()))
+				results.add(student.getContactInfo());
 		return results;
 	}
 
