@@ -250,33 +250,33 @@ public class CS2420ClassGenericTester {
 	
 	// Phase 3 tests -----------------------------------------------------------------------------------
 
-//	@Test
-//	public void testOrderedByUNID() {
-//		ArrayList<CS2420StudentGeneric<Integer>> actual = phase3Class.getOrderedByUNID();
-//		assertEquals(4, actual.size());
-//		assertEquals(new CS2420StudentGeneric<Integer>("A", "C", 3, 3), actual.get(2));
-//		assertEquals(new CS2420StudentGeneric<Integer>("A", "B", 2, 2), actual.get(1));
-//		assertEquals(new CS2420StudentGeneric<Integer>("A", "C", 1, 1), actual.get(0));
-//		assertEquals(new CS2420StudentGeneric<Integer>("D", "E", 4, 4), actual.get(3));
-//	}
-//	
-//	@Test
-//	public void testOrderedByName() {
-//		ArrayList<CS2420StudentGeneric<Integer>> actual = phase3Class.getOrderedByName();
-//		assertEquals(4, actual.size());
-//		assertEquals(new CS2420StudentGeneric<Integer>("A", "C", 3, 3), actual.get(2));
-//		assertEquals(new CS2420StudentGeneric<Integer>("A", "B", 2, 2), actual.get(0));
-//		assertEquals(new CS2420StudentGeneric<Integer>("A", "C", 1, 1), actual.get(1));
-//		assertEquals(new CS2420StudentGeneric<Integer>("D", "E", 4, 4), actual.get(3));
-//	}
-//	
-//	@Test
-//	public void testOrderedByScore() {
-//		ArrayList<CS2420StudentGeneric<Integer>> actual = phase3Class.getOrderedByScore(0);
-//		assertEquals(4, actual.size());
-//		assertEquals(new CS2420StudentGeneric<Integer>("A", "C", 3, 3), actual.get(2));
-//		assertEquals(new CS2420StudentGeneric<Integer>("A", "B", 2, 2), actual.get(3));
-//		assertEquals(new CS2420StudentGeneric<Integer>("A", "C", 1, 1), actual.get(1));
-//		assertEquals(new CS2420StudentGeneric<Integer>("D", "E", 4, 4), actual.get(0));
-//	}
+	@Test
+	public void testOrderedByUNID() {
+		ArrayList<CS2420StudentGeneric<Integer>> actual = phase3Class.getOrderedByUNID();
+		assertEquals(4, actual.size());
+		assertEquals(new CS2420StudentGeneric<Integer>("A", "C", 3, 3), actual.get(2));
+		assertEquals(new CS2420StudentGeneric<Integer>("A", "B", 2, 2), actual.get(1));
+		assertEquals(new CS2420StudentGeneric<Integer>("A", "C", 1, 1), actual.get(0));
+		assertEquals(new CS2420StudentGeneric<Integer>("D", "E", 4, 4), actual.get(3));
+	}
+	
+	@Test
+	public void testOrderedByName() {
+		ArrayList<CS2420StudentGeneric<Integer>> actual = phase3Class.getOrderedByName();
+		assertEquals(4, actual.size());
+		assertEquals(new CS2420StudentGeneric<Integer>("A", "C", 3, 3), actual.get(2));
+		assertEquals(new CS2420StudentGeneric<Integer>("A", "B", 2, 2), actual.get(0));
+		assertEquals(new CS2420StudentGeneric<Integer>("A", "C", 1, 1), actual.get(1));
+		assertEquals(new CS2420StudentGeneric<Integer>("D", "E", 4, 4), actual.get(3));
+	}
+	
+	@Test
+	public void testOrderedByScore() {
+		ArrayList<CS2420StudentGeneric<Integer>> actual = phase3Class.getOrderedByScore(0);
+		assertEquals(4, actual.size());
+		assertEquals(new CS2420StudentGeneric<Integer>("A", "C", 3, 3), actual.get(2));
+		assertEquals(new CS2420StudentGeneric<Integer>("A", "B", 2, 2), actual.get(3));
+		assertEquals(new CS2420StudentGeneric<Integer>("A", "C", 1, 1), actual.get(1));
+		assertEquals(new CS2420StudentGeneric<Integer>("D", "E", 4, 4), actual.get(0));
+	}
 }

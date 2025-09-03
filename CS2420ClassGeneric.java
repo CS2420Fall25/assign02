@@ -160,7 +160,13 @@ public class CS2420ClassGeneric<Type> {
 	 */
 	public ArrayList<CS2420StudentGeneric<Type>> getOrderedByScore(double cutoffScore) {
 		// FILL IN — do not return null
-		return null;
+		ArrayList<CS2420StudentGeneric<Type>> studentListCopy = new ArrayList<CS2420StudentGeneric<Type>>();
+		for (CS2420StudentGeneric<Type> student : studentList) {
+			if (student.computeFinalScore() >= cutoffScore)
+				studentListCopy.add(student);
+		}
+		sort(studentListCopy, new OrderByScore());
+		return studentListCopy;
 	}
 
 	/**
@@ -203,11 +209,25 @@ public class CS2420ClassGeneric<Type> {
 	 * uNID (if both names are the same). uNIDs are guaranteed to be unique.
 	 */
 	protected class OrderByName implements Comparator<CS2420StudentGeneric<Type>> {
-		// FILL IN
 		public int compare(CS2420StudentGeneric<Type> lhs, CS2420StudentGeneric<Type> rhs) {
-			//Lowercase argument names, check each character against other character by unicode value, until difference is found
-			//check first name if last name is the same
-			return lhs.getLastName() - rhs.getLastName();
+			String ln = lhs.getLastName().toLowerCase();
+			String rn = rhs.getLastName().toLowerCase();
+			if (ln.compareTo(rn) == 0) {
+				String ln2 = lhs.getFirstName().toLowerCase();
+				String rn2 = rhs.getFirstName().toLowerCase();
+				if (ln2.compareTo(rn2) == 0) return lhs.getUNID() - rhs.getUNID();
+				return ln2.compareTo(rn2);
+			}
+			return ln.compareTo(rn);
+		}
+	}
+	
+	protected class OrderByScore implements Comparator<CS2420StudentGeneric<Type>> {
+		public int compare(CS2420StudentGeneric<Type> o1, CS2420StudentGeneric<Type> o2) {
+			double s1 = o1.computeFinalScore();
+			double s2 = o2.computeFinalScore();
+			if (s2 - s1 == 0) return o1.getUNID() - o2.getUNID();
+			return (int) (s2 - s1);
 		}
 	}
 }
