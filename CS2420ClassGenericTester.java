@@ -13,8 +13,8 @@ import java.util.ArrayList;
 /**
  * This class contains tests for CS2420ClassGeneric.
  * 
- * @author Prof. Parker & ??
- * @version August 31, 2023
+ * @author Erin Parker and Donivan Schweiger and Ivy Bunnarith
+ * @version September 3, 2025
  */
 public class CS2420ClassGenericTester {
 
@@ -22,6 +22,9 @@ public class CS2420ClassGenericTester {
 	private CS2420ClassGeneric<MailingAddress> verySmallClass;
 	private CS2420ClassGeneric<PhoneNumber> largeClass;
 	private CS2420ClassGeneric<Integer> phase3Class;
+	private CS2420ClassGeneric<Integer> twinsClass;
+	
+	private CS2420StudentGeneric<Integer> gregory;
 
 	@BeforeEach
 	void setUp() throws Exception {
@@ -82,6 +85,12 @@ public class CS2420ClassGenericTester {
 		phase3Class.addScore(4, 90, "lab");   phase3Class.addScore(4, 90, "lab");
 		phase3Class.addScore(4, 90, "quiz");  phase3Class.addScore(4, 90, "quiz");
 		phase3Class.addScore(4, 90, "poll");
+		
+		gregory = new CS2420StudentGeneric<Integer>("Gregory", "Smith", 2, 2);
+		
+		twinsClass = new CS2420ClassGeneric<Integer>();
+		twinsClass.addStudent(new CS2420StudentGeneric<Integer>("A", "Bs", 3, 3));
+		twinsClass.addStudent(new CS2420StudentGeneric<Integer>("A", "B", 2, 2));
 	}
 	
 	// Empty CS 2420 class tests --------------------------------------------------------------------------
@@ -278,5 +287,53 @@ public class CS2420ClassGenericTester {
 		assertEquals(new CS2420StudentGeneric<Integer>("A", "B", 2, 2), actual.get(3));
 		assertEquals(new CS2420StudentGeneric<Integer>("A", "C", 1, 1), actual.get(1));
 		assertEquals(new CS2420StudentGeneric<Integer>("D", "E", 4, 4), actual.get(0));
+	}
+	
+	// Added tests -------------------------------------------------------------------------
+	@Test
+	public void testOrderedByNameSameFirstLastName() {
+		ArrayList<CS2420StudentGeneric<Integer>> desired = new ArrayList<CS2420StudentGeneric<Integer>>();
+		desired.add(new CS2420StudentGeneric<Integer>("A", "B", 2, 2));
+		desired.add(new CS2420StudentGeneric<Integer>("A", "B", 3, 3));
+		ArrayList<CS2420StudentGeneric<Integer>> actual = twinsClass.getOrderedByName();
+		assertEquals(actual, desired);
+	}
+	
+	@Test
+	public void testOrderedByScoreSameScore() {
+		ArrayList<CS2420StudentGeneric<Integer>> desired = new ArrayList<CS2420StudentGeneric<Integer>>();
+		desired.add(new CS2420StudentGeneric<Integer>("A", "B", 2, 2));
+		desired.add(new CS2420StudentGeneric<Integer>("A", "B", 3, 3));
+		desired.get(0).addScore(98.5, "exam");
+		desired.get(1).addScore(98.5, "exam");
+		ArrayList<CS2420StudentGeneric<Integer>> actual = twinsClass.getOrderedByScore(0);
+		assertEquals(actual, desired);
+	}
+	
+	@Test
+	public void testNoStudentWithID() {
+		assertEquals(null, emptyClass.lookup(389344));
+	}
+	
+	@Test
+	public void checkStudentFinalScoreEmpty() {
+		gregory.addScore(0, "exam");
+		assertTrue(gregory.computeFinalScore() == 0);
+	}
+	
+	@Test
+	public void checkStudentFinalGradeNA() {
+		gregory.addScore(0, "exam");
+		assertEquals("N/A", gregory.computeFinalGrade());
+	}
+	
+	@Test
+	public void checkStudentFinalGradeE() {
+		gregory.addScore(1, "exam");
+		gregory.addScore(1, "assignment");
+		gregory.addScore(1, "lab");
+		gregory.addScore(1, "quiz");
+		gregory.addScore(1, "poll");
+		assertEquals("E", gregory.computeFinalGrade());
 	}
 }

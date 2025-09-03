@@ -16,7 +16,7 @@ import java.util.Scanner;
  * blueprint for making objects.
  * 
  * @author Erin Parker and Donivan Schweiger and Ivy Bunnarith
- * @version January 20, 2022
+ * @version September 3, 2025
  * @param <Type>
  */
 public class CS2420ClassGeneric<Type> {
@@ -141,8 +141,6 @@ public class CS2420ClassGeneric<Type> {
 	 * order).
 	 */
 	public ArrayList<CS2420StudentGeneric<Type>> getOrderedByName() {
-		// FILL IN — do not return null
-		
 		ArrayList<CS2420StudentGeneric<Type>> studentListCopy = new ArrayList<CS2420StudentGeneric<Type>>();
 		for (CS2420StudentGeneric<Type> student : studentList)
 			studentListCopy.add(student);
@@ -159,7 +157,6 @@ public class CS2420ClassGeneric<Type> {
 	 *                    to be included in the returned list
 	 */
 	public ArrayList<CS2420StudentGeneric<Type>> getOrderedByScore(double cutoffScore) {
-		// FILL IN — do not return null
 		ArrayList<CS2420StudentGeneric<Type>> studentListCopy = new ArrayList<CS2420StudentGeneric<Type>>();
 		for (CS2420StudentGeneric<Type> student : studentList) {
 			if (student.computeFinalScore() >= cutoffScore)
@@ -222,6 +219,10 @@ public class CS2420ClassGeneric<Type> {
 		}
 	}
 	
+	/**
+	 * Comparator that defines an ordering among CS 2420 students using their final scores.
+	 * Compares by final scores, then uNID (if both scores are the same). uNIDs are guaranteed to be unique.
+	 */
 	protected class OrderByScore implements Comparator<CS2420StudentGeneric<Type>> {
 		public int compare(CS2420StudentGeneric<Type> o1, CS2420StudentGeneric<Type> o2) {
 			double s1 = o1.computeFinalScore();
